@@ -1,8 +1,9 @@
 import { Noise } from 'noisejs'
 import Tile from './Tile'
 
-console.log(Noise)
-var noise = new Noise(Math.random())
+import { map } from './controller'
+
+const noise = new Noise()
 
 export default class Chunk {
   constructor(scene, x, y) {
@@ -28,7 +29,7 @@ export default class Chunk {
           let tileX = (this.x * (this.scene.chunkSize * this.scene.tileSize)) + (x * this.scene.tileSize)
           let tileY = (this.y * (this.scene.chunkSize * this.scene.tileSize)) + (y * this.scene.tileSize)
 
-          let perlinValue = noise.perlin2(tileX / 100, tileY / 100)
+          let perlinValue = noise.perlin2(tileX / map.generationMapX, tileY / map.generationMapY)
           let key = ""
           let animationKey = ""
 
